@@ -1,27 +1,31 @@
 # FrontendGSwAngular
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 17.2.3.
+#Download Bootstrap examples
+https://getbootstrap.com/docs/4.6/examples/
 
-## Development server
+#Route examples
+bootstrap-4.6.2\site\content\docs\4.6\examples
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+#Add modules
+npm install bootstrap --save
+npm install jquery --save
+npm install popper.js --save
 
-## Code scaffolding
+# >angular.json -Styles and scripts: 
+ "node_modules/bootstrap/dist/css/bootstrap.min.css"
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+ "node_modules/popper.js/dist/umd/popper.min.js", 
+ "node_modules/jquery/dist/jquery.slim.min.js", 
+ "node_modules/bootstrap/dist/js/bootstrap.min.js" 
+ "node_modules/auth0-js/dist/auth0.js" 
 
-## Build
+ng g c components/login
+touch src/app/models/user.model.ts
+ng g s services/login
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+#app.modules.ts add:
+HttpClientModule
 
-## Running unit tests
+#add proxy.json
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+ng g c components/home
