@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 
-import { LoginService } from '../../services/login.service';
+import { AuthService } from '../../services/auth.service';
 import { User } from '../../models/user.model';
 
 
@@ -23,13 +23,17 @@ export class LoginComponent implements OnInit {
 
    constructor(
     private formBuilder: FormBuilder,
-    private loginService: LoginService,
+    private authService: AuthService,
     private router: Router) {
 
     this.loginForm = this.formBuilder.group({
       username: ['', Validators.required],
       password: ['', Validators.required]
      });
+
+     if (this.authService.isAuthenticated()) {
+       this.router.navigate(['/home']);
+     }
    }
 
   ngOnInit() {
@@ -54,13 +58,14 @@ export class LoginComponent implements OnInit {
      
      this.user = new User(this.f['username'].value, this.f['password'].value);
      console.log( this.user );
-     this.loginService.login( this.user ).subscribe({
+     this.authService.login( this.user ).subscribe({
       /*next: (result) => console.log(result),
       error: (e) => console.error(e),
       complete: () => console.info('complete')*/
      next: (result: any) => {
         console.info("*Result: ", result);
         if (result['status'] === 'success') {
+         this.authService.setCurrentUser(this.user);
           this.router.navigate(['/home']);
         } else {
           this.error = 'Wrong username password';

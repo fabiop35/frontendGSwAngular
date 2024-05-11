@@ -7,7 +7,7 @@ import { User } from '../models/user.model';
   providedIn: 'root'
 })
 
-export class LoginService {
+export class AuthService {
 
   constructor(private http: HttpClient) { }
     
@@ -17,7 +17,21 @@ export class LoginService {
       password : user.getPassword()
     });
   }
+
+  setCurrentUser(user: User) {
+   localStorage.setItem('currentUser', user.getUserName ());
+  }
+
+ isAuthenticated() {
+   const currentUser = localStorage.getItem('currentUser');
+   if (currentUser) {
+     return true;
+   }
+   return false;
+ }
   
-  logout() {}
+  logout() {
+    localStorage.removeItem('currentUser');
+  }
 
 }
