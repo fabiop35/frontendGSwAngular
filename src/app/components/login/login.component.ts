@@ -63,8 +63,10 @@ export class LoginComponent implements OnInit {
       error: (e) => console.error(e),
       complete: () => console.info('complete')*/
      next: (result: any) => {
-        console.info("*Result: ", result);
+        console.info("-*Result: ", result);
         if (result['status'] === 'success') {
+         this.user.setId(result['data'] [0]);
+         console.info("userID: "+ result['data'][0]);
          this.authService.setCurrentUser(this.user);
           this.router.navigate(['/home']);
         } else {

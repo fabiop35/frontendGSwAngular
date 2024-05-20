@@ -29,3 +29,13 @@ HttpClientModule
 #add proxy.json
 
 ng g c components/home
+
+ng g c components/post
+
+ng g s services/post
+
+
+#ToDo
+*check this.user.setId(result['data'][0]._id);
+
+
